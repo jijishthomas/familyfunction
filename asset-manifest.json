@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/shijo-serin-wedding/static/css/main.5b09ce4d.css",
-    "main.js": "/shijo-serin-wedding/static/js/main.a15fc5c9.js",
+    "main.js": "/shijo-serin-wedding/static/js/main.65ce7d1a.js",
     "static/js/453.207be9b4.chunk.js": "/shijo-serin-wedding/static/js/453.207be9b4.chunk.js",
     "index.html": "/shijo-serin-wedding/index.html",
     "main.5b09ce4d.css.map": "/shijo-serin-wedding/static/css/main.5b09ce4d.css.map",
-    "main.a15fc5c9.js.map": "/shijo-serin-wedding/static/js/main.a15fc5c9.js.map",
+    "main.65ce7d1a.js.map": "/shijo-serin-wedding/static/js/main.65ce7d1a.js.map",
     "453.207be9b4.chunk.js.map": "/shijo-serin-wedding/static/js/453.207be9b4.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.5b09ce4d.css",
-    "static/js/main.a15fc5c9.js"
+    "static/js/main.65ce7d1a.js"
   ]
 }
