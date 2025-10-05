@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/shijo-serin-wedding/static/css/main.5b09ce4d.css",
-    "main.js": "/shijo-serin-wedding/static/js/main.65ce7d1a.js",
-    "static/js/453.207be9b4.chunk.js": "/shijo-serin-wedding/static/js/453.207be9b4.chunk.js",
-    "index.html": "/shijo-serin-wedding/index.html",
-    "main.5b09ce4d.css.map": "/shijo-serin-wedding/static/css/main.5b09ce4d.css.map",
-    "main.65ce7d1a.js.map": "/shijo-serin-wedding/static/js/main.65ce7d1a.js.map",
-    "453.207be9b4.chunk.js.map": "/shijo-serin-wedding/static/js/453.207be9b4.chunk.js.map"
+    "main.css": "/familyfunction/static/css/main.5b09ce4d.css",
+    "main.js": "/familyfunction/static/js/main.92fdbee1.js",
+    "static/js/453.207be9b4.chunk.js": "/familyfunction/static/js/453.207be9b4.chunk.js",
+    "index.html": "/familyfunction/index.html",
+    "main.5b09ce4d.css.map": "/familyfunction/static/css/main.5b09ce4d.css.map",
+    "main.92fdbee1.js.map": "/familyfunction/static/js/main.92fdbee1.js.map",
+    "453.207be9b4.chunk.js.map": "/familyfunction/static/js/453.207be9b4.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.5b09ce4d.css",
-    "static/js/main.65ce7d1a.js"
+    "static/js/main.92fdbee1.js"
   ]
 }
