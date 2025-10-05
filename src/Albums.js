@@ -16,7 +16,7 @@ const Albums = () => {
   return (
     <div style={{ padding: '24px 0' }}>
       <Title level={2} style={{ marginBottom: '24px' }}>
-        Family Function Albums
+        Shijo & Serin's Marriage Function
       </Title>
       <Row gutter={[24, 24]}>
         {albumsData.map((album) => (

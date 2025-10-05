@@ -16,9 +16,8 @@ const Login = () => {
 
   const questions = {
     initial: [
-      { id: 'i1', text: "What was the color of Uncle Bob's famously loud shirt?", answer: 'neon green' },
-      { id: 'i2', text: 'What song did everyone get tired of hearing?', answer: 'baby shark' },
-      { id: 'i3', text: "Who won the 'most competitive' game of charades?", answer: 'grandma' },
+      { id: 'i1', text: "What was the location of the wedding ceremony?", answer: 'kuzhikala' },
+      { id: 'i2', text: 'What are the hometowns or residences of the bride and groom?', answer: 'kuzhikala' },
     ],
     bride: [
       { id: 'b1', text: "What is the bride's childhood nickname?", answer: 'chikkus' },
@@ -147,7 +146,7 @@ const Login = () => {
     <Layout style={{ minHeight: '100vh', display: 'grid', placeItems: 'center', background: '#f0f2f5' }}>
       <Card style={{ width: 400, boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}>
         <div style={{ textAlign: 'center', marginBottom: '24px' }}>
-          <Title level={2}>Family Album Access</Title>
+          <Title level={2}>Shijo & Serin's Wedding Album</Title>
           <Typography.Text type="secondary">Please answer the question to continue</Typography.Text>
         </div>
         {error && <Alert message={error} type="error" showIcon style={{ marginBottom: '24px' }} />}
