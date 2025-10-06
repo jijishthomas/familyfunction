@@ -50,17 +50,46 @@ const Gallery = () => {
         }
 
         if (photoFilenames.length > 0) {
-          const formattedPhotos = photoFilenames.map(filename => {
-            // URL-encode the filename to handle spaces and other special characters
-            const encodedFilename = encodeURIComponent(filename);
-            // Construct the full URL for the image
-            const imageUrl = getImageUrl(`albums/${albumId}/${encodedFilename}`);
-            return {
-              src: imageUrl,
-              width: 800, // Placeholder width
-              height: 600, // Placeholder height
-            };
-          });
+          // Helper: try multiple encodings for a filename and pick the first URL that responds
+          const resolveImageUrl = async (filename) => {
+            const basePath = `albums/${albumId}`;
+
+            // Candidate variants:
+            const raw = getImageUrl(`${basePath}/${filename}`);
+            const encoded = getImageUrl(`${basePath}/${encodeURIComponent(filename)}`);
+            const plusSpaces = getImageUrl(`${basePath}/${filename.replace(/ /g, '+')}`);
+            const encodedURI = getImageUrl(`${basePath}/${encodeURI(filename)}`);
+
+            const candidates = [encoded, raw, plusSpaces, encodedURI];
+
+            // Try HEAD on each candidate in order and return the first OK one.
+            for (const url of candidates) {
+              try {
+                // Use HEAD to avoid downloading the full image. CORS may block this; ignore errors.
+                const res = await fetch(url, { method: 'HEAD' });
+                if (res && res.ok) return url;
+              } catch (e) {
+                // ignore and try next
+                // console.debug(`HEAD failed for ${url}`, e);
+              }
+            }
+
+            // If none succeeded (CORS or 404), fall back to the encoded URL which is the safest for paths
+            return encoded;
+          };
+
+          const formattedPhotos = await Promise.all(
+            photoFilenames.map(async (filename) => {
+              const imageUrl = await resolveImageUrl(filename);
+              return {
+                src: imageUrl,
+                width: 800,
+                height: 600,
+                key: filename,
+              };
+            })
+          );
+
           setPhotos(formattedPhotos);
         } else {
           // If no photos are found, set an empty array

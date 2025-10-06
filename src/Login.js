@@ -20,7 +20,7 @@ const Login = () => {
       { id: 'i2', text: 'What are the hometowns or residences of the bride and groom?', answer: 'kuzhikala' },
     ],
     bride: [
-      { id: 'b1', text: "What is the bride's childhood nickname?", answer: 'chikkus' },
+      { id: 'b1', text: "What is the bride's childhood nickname?", answer: 'chikku' },
       { id: 'b2', text: "What city was the bride born in?", answer: 'kuzhikala' },
       { id: 'b3', text: "Which part does bride sing in choir?", answer: 'alto' },
     ],

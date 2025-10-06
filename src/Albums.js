@@ -1,25 +1,56 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Card, Typography, Row, Col } from 'antd';
+import { Card, Typography, Row, Col, Spin, Alert } from 'antd';
+import { fetchAlbums } from './api';
 
 const { Title } = Typography;
 
 const Albums = () => {
-  const albumsData = [
-    { id: 1, title: 'Summer Reunion', cover: 'https://placehold.co/600x400/00b96b/white?text=Summer' },
-    { id: 2, title: 'Winter Holidays', cover: 'https://placehold.co/600x400/0050b3/white?text=Winter' },
-    { id: 3, title: 'Spring Picnic', cover: 'https://placehold.co/600x400/7cb305/white?text=Spring' },
-    { id: 4, title: 'Grandma\'s Birthday', cover: 'https://placehold.co/600x400/d4380d/white?text=Birthday' },
-    // Add more albums as needed
-  ];
+  const [albums, setAlbums] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  // Helper to make titles look nice (e.g., "prewedding" -> "Pre Wedding")
+  const formatTitle = (id) =>
+    id.charAt(0).toUpperCase() + id.slice(1).replace(/([A-Z])/g, ' $1');
+
+  useEffect(() => {
+    const loadAlbums = async () => {
+      try {
+        setLoading(true);
+        const data = await fetchAlbums();
+        // The API returns { albums: ["id1", "id2"] }. We need to transform it.
+        if (data && Array.isArray(data.albums)) {
+          const formattedAlbums = data.albums.map((albumId) => ({
+            id: albumId,
+            title: formatTitle(albumId),
+            // The cover URL will now need to be constructed or returned by the API.
+            // For now, we can use a placeholder.
+            cover: `https://placehold.co/600x400/00b96b/white?text=${formatTitle(albumId)}`,
+          }));
+          setAlbums(formattedAlbums);
+        } else {
+          // Handle cases where the response is not in the expected format
+          throw new Error("Received invalid album data from the server.");
+        }
+      } catch (err) {
+        setError('Could not load albums. Please try again later.');
+      } finally {
+        setLoading(false);
+      }
+    };
+    loadAlbums();
+  }, []);
 
   return (
     <div style={{ padding: '24px 0' }}>
       <Title level={2} style={{ marginBottom: '24px' }}>
-        Shijo & Serin's Marriage Function
+        Photo Albums
       </Title>
       <Row gutter={[24, 24]}>
-        {albumsData.map((album) => (
+        {loading && <div style={{ width: '100%', textAlign: 'center', padding: '50px' }}><Spin size="large" /></div>}
+        {error && <Alert message="Error" description={error} type="error" showIcon style={{ width: '100%' }} />}
+        {!loading && !error && albums.map((album) => (
           <Col xs={24} sm={12} md={8} lg={6} key={album.id}>
             <Card
               hoverable
