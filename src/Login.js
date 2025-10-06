@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Form, Input, Button, Typography, Alert, Card, Layout, Spin, Space, Divider } from 'antd';
+import brideGroomImage from './assets/bride-groom.png';
+import brideImage from './assets/bride.jpeg';
+import groomImage from './assets/groom.jpeg';
 
 const { Title } = Typography;
 
@@ -102,9 +105,25 @@ const Login = () => {
         <>
           <Typography.Text type="secondary">Are you with the bride or groom's family?</Typography.Text>
           <Divider />
-          <Space style={{ width: '100%', justifyContent: 'center' }}>
-            <Button size="large" onClick={() => handleSideSelection('bride')}>Bride's Side</Button>
-            <Button size="large" onClick={() => handleSideSelection('groom')}>Groom's Side</Button>
+          <Space style={{ width: '100%' }} align="center" size="large">
+            <Card
+              hoverable
+              style={{ width: 160, textAlign: 'center' }}
+              cover={<img alt="Serin" src={brideImage} style={{ height: 160, objectFit: 'cover' }} />}
+              onClick={() => handleSideSelection('bride')}
+              bodyStyle={{ padding: '12px' }}
+            >
+              <Card.Meta title="Serin's Side" />
+            </Card>
+            <Card
+              hoverable
+              style={{ width: 160, textAlign: 'center' }}
+              cover={<img alt="Shijo" src={groomImage} style={{ height: 160, objectFit: 'cover' }} />}
+              onClick={() => handleSideSelection('groom')}
+              bodyStyle={{ padding: '12px' }}
+            >
+              <Card.Meta title="Shijo's Side" />
+            </Card>
           </Space>
         </>
       );
@@ -145,6 +164,7 @@ const Login = () => {
   return (
     <Layout style={{ minHeight: '100vh', display: 'grid', placeItems: 'center', background: '#f0f2f5' }}>
       <Card style={{ width: 400, boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}>
+        <img src={brideGroomImage} alt="Shijo & Serin" style={{ width: '100%', height: 'auto', marginBottom: '20px', borderRadius: '6px' }} />
         <div style={{ textAlign: 'center', marginBottom: '24px' }}>
           <Title level={2}>Shijo & Serin's Wedding Album</Title>
           <Typography.Text type="secondary">Please answer the question to continue</Typography.Text>

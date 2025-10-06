@@ -24,7 +24,7 @@ const Gallery = () => {
 
   // Example album data for breadcrumb
   const albumsData = [
-    { id: 1, title: 'Pre Wedding' },
+    { id: 1, title: 'Pre ssWedding' },
     { id: 2, title: 'Post Wedding' },
     { id: 3, title: 'Wedding Ceremony' },
     { id: 4, title: 'Reception' },
