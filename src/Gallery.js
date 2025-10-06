@@ -20,30 +20,24 @@ const Gallery = () => {
   const [index, setIndex] = useState(-1);
   const [photos, setPhotos] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [albumTitle, setAlbumTitle] = useState('Gallery');
   const [error, setError] = useState(null);
 
-  // Example album data for breadcrumb
-  const albumsData = [
-    { id: 1, title: 'Pre ssWedding' },
-    { id: 2, title: 'Post Wedding' },
-    { id: 3, title: 'Wedding Ceremony' },
-    { id: 4, title: 'Reception' },
-  ];
-  const currentAlbum = albumsData.find(album => album.id === parseInt(albumId)) || { title: 'Gallery' };
+  // Helper to make titles look nice (e.g., "prewedding" -> "Pre Wedding")
+  const formatTitle = (id) =>
+    id ? id.charAt(0).toUpperCase() + id.slice(1).replace(/([A-Z])/g, ' $1') : 'Gallery';
 
   useEffect(() => {
     const fetchPhotos = async () => {
       try {
         setLoading(true);
         setError(null);
-        // The API should return a complete array of photo objects.
-        // Each object must have a pre-signed `src`, `width`, and `height`.
-        // Example: [{ src: "https://...<pre-signed-url>...", width: 800, height: 600 }, ...]
         const data = await fetchAlbumPhotos(albumId);
 
         let photoFilenames = [];
         if (data && Array.isArray(data.photos)) {
           photoFilenames = data.photos;
+          setAlbumTitle(formatTitle(data.album));
         } else if (Array.isArray(data)) {
           // Fallback if the API returns a direct array of strings/objects
           photoFilenames = data;
@@ -80,9 +74,9 @@ const Gallery = () => {
     <div style={{ padding: '24px 0' }}>
       <Breadcrumb style={{ marginBottom: '16px' }}>
         <Breadcrumb.Item><Link to="/albums"><HomeOutlined /> Albums</Link></Breadcrumb.Item>
-        <Breadcrumb.Item>{currentAlbum.title}</Breadcrumb.Item>
+        <Breadcrumb.Item>{albumTitle}</Breadcrumb.Item>
       </Breadcrumb>
-      <Title level={2} style={{ marginBottom: '24px' }}>{currentAlbum.title}</Title>
+      <Title level={2} style={{ marginBottom: '24px' }}>{albumTitle}</Title>
 
       {loading && <div style={{ textAlign: 'center', padding: '50px' }}><Spin size="large" /></div>}
       {error && <Alert message="Error" description={error} type="error" showIcon style={{ width: '100%' }} />}

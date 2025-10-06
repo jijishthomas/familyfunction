@@ -52,17 +52,14 @@ const Albums = () => {
         {error && <Alert message="Error" description={error} type="error" showIcon style={{ width: '100%' }} />}
         {!loading && !error && albums.map((album) => (
           <Col xs={24} sm={12} md={8} lg={6} key={album.id}>
-            <Card
-              hoverable
-              cover={<img alt={album.title} src={album.cover} style={{ height: 180, objectFit: 'cover' }} />}
-              actions={[
-                <Link to={`/gallery/${album.id}`} key="view">
-                  View Album
-                </Link>,
-              ]}
-            >
-              <Card.Meta title={album.title} />
-            </Card>
+            <Link to={`/gallery/${album.id}`}>
+              <Card
+                hoverable
+                cover={<img alt={album.title} src={album.cover} style={{ height: 180, objectFit: 'cover' }} />}
+              >
+                <Card.Meta title={album.title} />
+              </Card>
+            </Link>
           </Col>
         ))}
       </Row>
