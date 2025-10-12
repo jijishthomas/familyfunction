@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Form, Input, Button, Typography, Alert, Card, Layout, Spin, Space, Divider } from 'antd';
 import brideGroomImage from './assets/bride-groom.png';
 import brideImage from './assets/bride.jpeg';
@@ -9,6 +9,7 @@ const { Title } = Typography;
 
 const Login = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [error, setError] = useState('');
   const [currentQuestion, setCurrentQuestion] = useState(null);
   const [loginStep, setLoginStep] = useState(1); // 1: initial, 2: side-select, 3: side-question
@@ -33,6 +34,17 @@ const Login = () => {
       { id: 'g3', text: "What was the groom's preferred bike brand?", answer: 'honda' },
     ]
   };
+
+  // --- Bypass Logic ---
+  // This effect checks for a bypass token in the URL query parameters.
+  useEffect(() => {
+    const queryParams = new URLSearchParams(location.search);
+    const token = queryParams.get('token');
+    const bypassToken = 'Shij0WedsSerin';
+    if (bypassToken && token === bypassToken) { 
+      loginSuccess();
+    }
+  }, [location]); // Reruns if the URL changes.
 
   useEffect(() => {
     // Select a question based on the current step
