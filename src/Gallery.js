@@ -8,10 +8,10 @@ import Fullscreen from "yet-another-react-lightbox/plugins/fullscreen";
 import Slideshow from "yet-another-react-lightbox/plugins/slideshow";
 import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
 import Zoom from "yet-another-react-lightbox/plugins/zoom";
-import "yet-another-react-lightbox/plugins/thumbnails.css";
 import { RowsPhotoAlbum } from 'react-photo-album';
-import 'react-photo-album/rows.css';
 import { fetchAlbumPhotos, getImageUrl } from './api'; // your helper functions
+import "yet-another-react-lightbox/plugins/thumbnails.css";
+import 'react-photo-album/rows.css';
 
 const { Title } = Typography;
 
@@ -62,8 +62,8 @@ const Gallery = () => {
       const imageUrl = getImageUrl(`albums/${albumId}/${encodedFilename}`);
       return {
         src: imageUrl,
-        width: 800, // Placeholder width
-        height: 600, // Placeholder height
+        width: 2500, // Placeholder width
+        height: 1600, // Placeholder height
       };
     });
     setAllPhotos(allPhotoObjects);
@@ -140,6 +140,9 @@ const Gallery = () => {
             open={index >= 0}
             index={index}
             close={() => setIndex(-1)}
+            // Make the image as large as possible
+            carousel={{ padding: 0, imageFit: "contain-w" }}
+            styles={{ container: { backgroundColor: "rgba(0, 0, 0, .9)" } }}
             plugins={[Fullscreen, Slideshow, Thumbnails, Zoom]}
             on={{
               view: ({ index: currentIndex }) => {

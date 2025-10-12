@@ -20,31 +20,30 @@ const Login = () => {
 
   const questions = {
     initial: [
-      { id: 'i1', text: "What was the location of the wedding ceremony?", answer: 'kuzhikala' },
-      { id: 'i2', text: 'What are the hometowns or residences of the bride and groom?', answer: 'kuzhikala' },
+      { id: 'i1', text: 'Which was the month of the wedding ceremony?', answer: 'october' },
+      { id: 'i2', text: "What was the location of the wedding ceremony?", answer: 'kuzhikala' },
+      { id: 'i3', text: "Which day of the week was the wedding ceremony?", answer: 'thursday' },
     ],
     bride: [
-      { id: 'b1', text: "What is the bride's childhood nickname?", answer: 'chikku' },
-      { id: 'b2', text: "What city was the bride born in?", answer: 'kuzhikala' },
-      { id: 'b3', text: "Which part does bride sing in choir?", answer: 'alto' },
+      { id: 'b1', text: "What is Serin's pet name?", answer: 'chikku' },
+      { id: 'b2', text: "What is Serin's mother's pet name?", answer: 'mini' },
+      { id: 'b3', text: "What is Serin's father's name?", answer: 'saju' },
+      { id: 'b4', text: "What is Serin's house name?", answer: 'kallil' },
+      { id: 'b5', text: "What are the last 4 digits of Serin's mobile number?", answer: '9333' },
+      { id: 'b6', text: "What is Serin's brother's pet name?", answer: 'akku' },
+      { id: 'b7', text: "What are the last 4 digits of Serin's father's phone number?", answer: 'xxxx' },
+      { id: 'b8', text: "What are the last 4 digits of Serin's mother's phone number?", answer: '1897' },
     ],
     groom: [
-      { id: 'g1', text: "What is the groom's favourite tools company?", answer: 'stanley' },
-      { id: 'g2', text: "What was the groom's favourite engine oil brand?", answer: 'shell' },
-      { id: 'g3', text: "What was the groom's preferred bike brand?", answer: 'honda' },
+      { id: 'g1', text: "What is Shijo's brother's name?", answer: 'jijish' },
+      { id: 'g2', text: "What is Shijo's father's pet name?", answer: 'shaji' },
+      { id: 'g3', text: "What is Shijo's mother's pet name?", answer: 'jolly' },
+      { id: 'g4', text: "What are the last 4 digits of Shijo's mobile number?", answer: '9790' },
+      { id: 'g5', text: "What are the last 4 digits of Shijo's father's phone number?", answer: '6510' },
+      { id: 'g6', text: "What are the last 4 digits of Shijo's mother's phone number?", answer: '8870' },
     ]
   };
 
-  // --- Bypass Logic ---
-  // This effect checks for a bypass token in the URL query parameters.
-  useEffect(() => {
-    const queryParams = new URLSearchParams(location.search);
-    const token = queryParams.get('token');
-    const bypassToken = 'Shij0WedsSerin';
-    if (bypassToken && token === bypassToken) { 
-      loginSuccess();
-    }
-  }, [location]); // Reruns if the URL changes.
 
   useEffect(() => {
     // Select a question based on the current step
