@@ -31,8 +31,9 @@ const Login = () => {
       { id: 'b4', text: "What is Serin's house name?", answer: 'kallil' },
       { id: 'b5', text: "What are the last 4 digits of Serin's mobile number?", answer: '9333' },
       { id: 'b6', text: "What is Serin's brother's pet name?", answer: 'akku' },
-      { id: 'b7', text: "What are the last 4 digits of Serin's father's phone number?", answer: 'xxxx' },
-      { id: 'b8', text: "What are the last 4 digits of Serin's mother's phone number?", answer: '1897' },
+      { id: 'b7', text: "What are the last 4 digits of Serin's father's Indian phone number?", answer: '5915' },
+      { id: 'b8', text: "What are the last 4 digits of Serin's father's Saudi phone number?", answer: '5945' },
+      { id: 'b9', text: "What are the last 4 digits of Serin's mother's phone number?", answer: '1897' },
     ],
     groom: [
       { id: 'g1', text: "What is Shijo's brother's name?", answer: 'jijish' },
@@ -101,6 +102,13 @@ const Login = () => {
     form.resetFields();
   };
 
+  const handleGoBack = () => {
+    setLoginStep(2); // Go back to the side selection step
+    setFamilySide(null);
+    setError('');
+    form.resetFields();
+  };
+
   const handleSkip = () => {
     setError('');
     setQuestionTrigger(prev => prev + 1);
@@ -157,14 +165,22 @@ const Login = () => {
             <Input placeholder="Your Answer" size="large" />
           </Form.Item>
 
-          <Form.Item>
+          <Form.Item style={{ marginBottom: loginStep === 3 ? 0 : '24px' }}>
             <Space style={{ width: '100%' }}>
               <Button type="primary" htmlType="submit" size="large" style={{ flex: 1 }}>
-                Enter
+                Submit
               </Button>
               <Button onClick={handleSkip} size="large" style={{ flex: 1 }}>Skip Question</Button>
             </Space>
           </Form.Item>
+
+          {loginStep === 3 && (
+            <Form.Item style={{ marginBottom: 0, textAlign: 'center' }}>
+              <Button type="link" onClick={handleGoBack}>
+                Choose a different side
+              </Button>
+            </Form.Item>
+          )}
         </Form>
       );
     }
